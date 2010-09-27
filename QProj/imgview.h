@@ -1,6 +1,8 @@
 #ifndef IMGVIEW_H
 #define IMGVIEW_H
 
+#include "apogeeimage.h"
+
 #include <QWidget>
 #include <QString>
 
@@ -15,7 +17,7 @@ public:
 	~ImgView();
 
 	void setText(const QString &text);
-	void setImg(const QPixmap &pixmap);
+	void setImg(const ApogeeImage &img);
 
 private:
 	Ui::ImgViewClass ui;

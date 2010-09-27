@@ -1,5 +1,7 @@
 #include "qproj.h"
+
 #include <QtGui/QApplication>
+#include <QFileDialog>
 
 #import "Apogee.DLL" no_namespace
 
@@ -17,7 +19,7 @@ int main(int argc, char *argv[])
 
 	// Display camera discover window
 	w.discoverCamera();
-
+	
 	// Run GUI
 	a.exec();
 

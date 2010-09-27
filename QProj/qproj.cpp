@@ -1,12 +1,21 @@
 #include "qproj.h"
+#include "apogeeimage.h"
+#include "imgview.h"
 
 #include <QErrorMessage>
+#include <QFileDialog>
+#include <QFile>
+#include <QDebug>
 
 QProj::QProj(QWidget *parent, Qt::WFlags flags)
 	: QMainWindow(parent, flags)
 	, cam_discovered(false)
 {
 	ui.setupUi(this);
+
+	// Connect actions
+	connect(ui.actionOpenImage, SIGNAL(triggered(bool)),
+		    this, SLOT(viewImage()));
 
 	// Instantiate Camera
 	// TODO: This should be a recoverable error
@@ -68,4 +77,29 @@ void QProj::showError(const QString &err_msg)
 
 void QProj::showCameraInfo()
 {
+}
+
+void QProj::viewImage()
+{
+	QFileDialog *fd = new QFileDialog(this);;
+	connect(fd, SIGNAL(fileSelected(const QString&)),
+	        this, SLOT(viewImage(const QString&)));
+	fd->show();
+}
+
+void QProj::viewImage(const QString &filename)
+{
+	qDebug() << "Opening image " << filename;
+
+	QFile file(filename);
+	file.open(QIODevice::ReadOnly);
+	QByteArray byte_arr = file.readAll();
+	file.close();
+
+	ApogeeImage img;
+	img.load16bit(256, 256, byte_arr);
+
+	ImgView *view = new ImgView();
+	view->setImg(img);
+	view->show();
 }

@@ -19,6 +19,8 @@ public Q_SLOTS:
 
 private Q_SLOTS:
 	void showCameraInfo();
+	void viewImage();
+	void viewImage(const QString &filename);
 
 private:
 	void showError(const QString &err_msg);
