@@ -1,6 +1,6 @@
 #include "qproj.h"
 #include "apogeeimage.h"
-#include "imgview.h"
+#include "imageviewer.h"
 
 #include <QErrorMessage>
 #include <QFileDialog>
@@ -97,9 +97,9 @@ void QProj::viewImage(const QString &filename)
 	file.close();
 
 	ApogeeImage img;
-	img.load16bit(256, 256, byte_arr);
+	img.load16BitRaw(256, 256, byte_arr);
 
-	ImgView *view = new ImgView();
-	view->setImg(img);
+	ImageViewer *view = new ImageViewer();
+	view->setImage(img);
 	view->show();
 }

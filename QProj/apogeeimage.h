@@ -4,15 +4,22 @@
 #include <QImage>
 #include <QByteArray>
 
-class ApogeeImage : public QImage
+class ApogeeImage : public QObject, public QImage
 {
+	Q_OBJECT
+
 public:
 	ApogeeImage();
 	~ApogeeImage();
 
-	void load8bit(long columns, long rows, const QByteArray &data);
-	void load16bit(long columns, long rows, const QByteArray &data);
-	void doLeveling(qreal threshold);
+	void load8BitRaw(long columns, long rows, QByteArray &data);
+	void load16BitRaw(long columns, long rows, QByteArray &data);
+
+Q_SIGNALS:
+	void changed();
+
+private:
+	void scale8Bit(QByteArray &data);
 
 };
 

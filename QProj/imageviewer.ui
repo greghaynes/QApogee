@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ImgViewClass</class>
- <widget class="QWidget" name="ImgViewClass">
+ <class>ImageViewer</class>
+ <widget class="QWidget" name="ImageViewer">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,19 +11,18 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>ImgView</string>
+   <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="img">
      <property name="text">
-      <string/>
+      <string>TextLabel</string>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>
